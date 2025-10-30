@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — A Quiet Study in Light</title>
+  <meta name="description" content="Lumen — a quiet study in light by Dieu Le. Physics, space, and curiosity." />
+
+  <!-- Body font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Title font (Blosta Script). Put the file at /fonts/blosta-script.woff2 -->
+  <style>
+    @font-face {
+      font-family: 'Blosta Script';
+      src: url('/fonts/blosta-script.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <style>
+    :root{
+      --cream: #FFF5E1;
+      --navy:  #0B0F3B;
+      --navy-2:#1D2257;
+      --maxw:  880px;
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--cream); color:var(--navy);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.6;
+    }
+    a{color:var(--navy); text-decoration:underline; text-decoration-thickness: 1px; text-underline-offset: 2px}
+    a:hover{color:var(--navy-2)}
+
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:32px 20px 64px}
+
+    header{padding:60px 0 28px}
+    .title{
+      font-family: 'Blosta Script', 'Playfair Display', Georgia, serif;
+      font-size: clamp(44px, 8vw, 88px);
+      margin:0 0 8px 0; letter-spacing:0.2px;
+      color:var(--navy);
+    }
+    .tagline{
+      font-size: clamp(16px, 2.8vw, 20px);
+      margin: 0 0 24px 2px; opacity:.9;
+    }
+
+    nav{display:flex; gap:18px; flex-wrap:wrap; margin-top:10px}
+    nav a{font-weight:600; text-decoration:none; border-bottom:1px solid transparent}
+    nav a:hover{border-bottom-color: var(--navy)}
+
+    section{margin:40px 0 0}
+    .card{background:white; border:1px solid rgba(11,15,59,.08); border-radius: var(--radius);
+          padding:22px 22px; box-shadow: 0 6px 24px rgba(11,15,59,.05)}
+    .card h2{
+      font-family: 'Blosta Script', 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 5vw, 40px);
+      margin: 4px 0 10px
+    }
+    .muted{opacity:.9}
+
+    footer{margin:64px 0 16px; font-size:14px; opacity:.8}
+
+    .sp-xxl{height:56px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1 class="title">Lumen</h1>
+      <p class="tagline">A Quiet Study in Light</p>
+      <nav aria-label="primary">
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p class="muted">I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal, a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
+    </section>
+
+    <div class="sp-xxl"></div>
+
+    <section id="projects" class="card">
+      <h2>Projects</h2>
+      <p class="muted">Coming soon — labs, notes, and small experiments.</p>
+    </section>
+
+    <div class="sp-xxl"></div>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p class="muted">Email: <a href="mailto:le000547@umn.edu">le000547@umn.edu</a> · Instagram: <a href="https://instagram.com/yourhandle" target="_blank" rel="noreferrer">@yourhandle</a></p>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Dieu Le · <a href="mailto:le000547@umn.edu">le000547@umn.edu</a></p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
