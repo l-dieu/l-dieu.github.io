@@ -6,7 +6,6 @@
   <title>Lumen — A Quiet Study in Light</title>
   <meta name="description" content="Lumen — a quiet study in light by Dieu Le. Physics, space, and curiosity." />
 
-  <!-- Body font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -15,9 +14,7 @@
     :root {
       --cream: #FFF5E1;
       --navy: #0B0F3B;
-      --navy-2: #1D2257;
       --radius: 18px;
-      --maxw: 880px;
     }
 
     * {
@@ -29,14 +26,14 @@
     body {
       background: var(--cream);
       color: var(--navy);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       line-height: 1.6;
       text-align: center;
-      margin: 0;
+      overflow-x: hidden;
     }
 
     header {
-      padding: 60px 20px 40px;
+      padding: 80px 20px 40px;
     }
 
     .logo img {
@@ -65,6 +62,7 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 16px;
+      cursor: pointer;
     }
 
     .nav-right {
@@ -79,12 +77,15 @@
 
     /* Sections */
     .wrap {
-      max-width: var(--maxw);
+      max-width: 880px;
       margin: 0 auto;
       padding: 40px 20px;
     }
 
     section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
       margin: 60px auto;
       background: white;
       border-radius: var(--radius);
@@ -92,6 +93,11 @@
       border: 1px solid rgba(11, 15, 59, 0.08);
       padding: 32px;
       text-align: center;
+    }
+
+    section.active {
+      display: block;
+      opacity: 1;
     }
 
     section h2 {
@@ -125,34 +131,33 @@
 <body>
   <header>
     <div class="logo">
-      <!-- Replace lumen-logo.png with your uploaded file name -->
       <img src="lumen-logo.png" alt="Lumen logo" />
     </div>
     <p class="tagline">A Quiet Study in Light</p>
 
-    <nav class="navbar" aria-label="primary">
+    <nav class="navbar">
       <div class="nav-left">
-        <a href="#projects">Projects</a>
+        <a onclick="showSection('projects')">Projects</a>
       </div>
       <div class="nav-right">
-        <a href="#about">About Me</a>
-        <a href="#contact">Contact</a>
+        <a onclick="showSection('about')">About Me</a>
+        <a onclick="showSection('contact')">Contact</a>
       </div>
     </nav>
   </header>
 
   <div class="wrap">
-    <section id="projects">
+    <section id="projects" class="card">
       <h2>Projects</h2>
       <p>Coming soon — labs, notes, and small experiments.</p>
     </section>
 
-    <section id="about">
+    <section id="about" class="card">
       <h2>About Me</h2>
       <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal, a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="card">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:le000547@umn.edu">le000547@umn.edu</a></p>
     </section>
@@ -164,6 +169,17 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    function showSection(id) {
+      // hide all sections
+      document.querySelectorAll("section").forEach(sec => {
+        sec.classList.remove("active");
+      });
+      // show the chosen one
+      document.getElementById(id).classList.add("active");
+      // smooth scroll to it
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
   </script>
 </body>
 </html>
