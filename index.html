@@ -34,7 +34,7 @@
     }
 
     header {
-      padding: 100px 20px 40px;
+      padding: 100px 20px 60px;
     }
 
     .logo img {
@@ -46,10 +46,18 @@
       font-size: 18px;
       opacity: 0.9;
       margin-top: 10px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
-    /* centered nav below tagline */
+    /* Intro paragraph */
+    .intro {
+      font-size: 18px;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+
+    /* Centered nav below intro */
     .navbar-wrap {
       max-width: var(--maxw);
       margin: 0 auto;
@@ -129,10 +137,14 @@
 <body>
   <header>
     <div class="logo">
-      <!-- replace this image file name if needed -->
+      <!-- replace this file name with your actual logo if needed -->
       <img src="lumen-logo.png" alt="Lumen logo" />
     </div>
     <p class="tagline">A Quiet Study in Light</p>
+
+    <p class="intro">
+      Lumen is a quiet digital journal by Dieu Le — a space to share experiments, reflections, and notes from studying physics. It explores how theory meets wonder, where science and light intertwine.
+    </p>
 
     <div class="navbar-wrap">
       <nav class="navbar" aria-label="primary">
@@ -178,5 +190,3 @@
   </script>
 </body>
 </html>
-
-
