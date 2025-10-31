@@ -9,7 +9,6 @@
     :root {
       --cream: #FFF5E1;
       --navy: #0B0F3B;
-      --navy-2:#1D2257;
       --radius: 14px;
       --maxw: 880px;
     }
@@ -20,93 +19,82 @@
       background: var(--cream);
       color: var(--navy);
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
       text-align: center;
       padding: 56px 16px 72px;
     }
 
-    /* Logo + tagline */
     .logo img { width: 300px; max-width: 90%; height: auto; }
-    .tagline img { width: 340px; max-width: 90%; height: auto; margin-top: 10px; }
+    .tagline img { width: 340px; max-width: 90%; height: auto; margin-top: 10px; margin-bottom: 18px; }
 
-    /* Intro */
-    .intro {
-      max-width: 640px;
-      margin: 20px auto 28px;
-      font-size: 18px;
-      opacity: .9;
-    }
-
-    /* Tabs (headers under tagline) */
+    /* Tabs (below tagline) */
     .tabs {
       display: inline-flex;
-      gap: 20px;
+      gap: 28px;
       justify-content: center;
       align-items: center;
-      margin: 18px auto 24px;
+      margin: 14px auto 24px;
       border-radius: 999px;
-      padding: 6px;
-      background: rgba(11,15,59,.06);
+      background: #F2E9D8;
+      padding: 10px 16px;
     }
+
     .tab {
-      appearance: none;
-      border: none;
       background: transparent;
+      border: none;
       color: var(--navy);
       font-weight: 700;
       font-size: 16px;
-      padding: 10px 16px;
       border-radius: 999px;
+      padding: 10px 18px;
       cursor: pointer;
-      transition: background .2s ease, opacity .2s ease;
-    }
-    .tab:hover { opacity: .8; }
-    .tab.active {
-      background: white;
-      box-shadow: 0 2px 10px rgba(11,15,59,.08);
-      border: 1px solid rgba(11,15,59,.10);
+      transition: all .2s ease;
     }
 
-    /* Panels */
+    .tab.active {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(11,15,59,.1);
+    }
+
+    .tab:hover { opacity: .8; }
+
+    /* Intro below the tabs */
+    .intro {
+      max-width: 600px;
+      margin: 25px auto 28px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: .9;
+    }
+
     .wrap { max-width: var(--maxw); margin: 0 auto; }
     .panel {
       display: none;
       text-align: left;
-      margin: 0 auto;
       background: #fff;
-      border: 1px solid rgba(11,15,59,.10);
       border-radius: var(--radius);
-      box-shadow: 0 10px 28px rgba(11,15,59,.06);
+      box-shadow: 0 10px 25px rgba(11,15,59,.08);
       padding: 28px 24px;
-      animation: fadeIn .35s ease;
+      animation: fadeIn .4s ease;
     }
-    .panel.active { display: block; }
 
-    .panel h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-      font-weight: 700;
-      color: var(--navy);
-      text-align: center;
-    }
+    .panel.active { display: block; }
+    .panel h2 { font-size: 28px; margin-bottom: 10px; font-weight: 700; color: var(--navy); text-align: center; }
     .panel p, .panel li { font-size: 17px; opacity: .95; }
-    .panel ul { padding-left: 18px; margin-top: 8px; }
+    .panel ul { margin-top: 8px; padding-left: 18px; }
     .panel li { margin: 6px 0; }
 
-    /* Footer */
     footer {
-      margin: 56px auto 8px;
+      margin-top: 60px;
       font-size: 14px;
       opacity: .8;
     }
     footer a { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
 
-    @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Mobile tweaks */
     @media (max-width: 520px) {
-      .tabs { gap: 10px; padding: 6px; }
-      .tab { padding: 9px 12px; font-size: 15px; }
+      .tabs { gap: 12px; padding: 8px 10px; }
+      .tab { font-size: 15px; padding: 9px 14px; }
       .panel { padding: 22px 18px; }
     }
   </style>
@@ -114,47 +102,42 @@
 <body>
   <!-- Logo & Tagline -->
   <div class="logo">
-    <!-- keep your custom logo file name -->
     <img src="lumen-logo.png" alt="Lumen logo">
   </div>
   <div class="tagline">
-    <!-- your tagline image -->
     <img src="tagline.png" alt="A Quiet Study in Light">
   </div>
 
-  <!-- Short explanation on first open -->
-  <p class="intro">
-    Lumen is a quiet digital journal by Dieu Le — a small space for projects, notes, and reflections from studying physics, where theory meets wonder.
-  </p>
-
-  <!-- Headers (tabs) directly below the tagline -->
-  <div class="tabs" role="tablist" aria-label="Sections">
-    <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-projects" id="tab-projects" onclick="showPanel('projects')">Projects</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-about" id="tab-about" onclick="showPanel('about')">About Me</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-contact" id="tab-contact" onclick="showPanel('contact')">Contact</button>
+  <!-- Tabs directly below tagline -->
+  <div class="tabs">
+    <button class="tab active" onclick="showPanel('projects')">Projects</button>
+    <button class="tab" onclick="showPanel('about')">About Me</button>
+    <button class="tab" onclick="showPanel('contact')">Contact</button>
   </div>
+
+  <!-- Intro below tabs -->
+  <p class="intro">
+    <strong>Lumen</strong> is a quiet digital journal — a small space to explore light, physics, and the patterns that shape understanding. It’s a collection of work, experiments, and reflections by Dieu Le, a physics student at the University of Minnesota.
+  </p>
 
   <!-- Panels -->
   <div class="wrap">
-    <!-- Projects (shown by default) -->
-    <section id="panel-projects" class="panel active" role="tabpanel" aria-labelledby="tab-projects">
+    <section id="projects" class="panel active">
       <h2>Projects</h2>
-      <p>Here are a few things I’m building and studying. I’ll keep adding as I go.</p>
+      <p>Here are a few things I’m building and studying. I’ll keep adding as I go:</p>
       <ul>
-        <li><strong>Lab: Inclined Plane Acceleration</strong> — comparing theoretical vs. experimental acceleration with uncertainty analysis and percent differences.</li>
-        <li><strong>Notes: Celestial Mechanics</strong> — orbit shapes, energy, and the meaning of aphelion/perihelion.</li>
-        <li><strong>Mini Project: Light & Materials</strong> — simple experiments on reflection, refraction, and color.</li>
+        <li><strong>Inclined Plane Lab:</strong> Analyzing acceleration differences between theoretical and experimental data.</li>
+        <li><strong>Celestial Mechanics Notes:</strong> Exploring orbital paths, gravity, and motion in planetary systems.</li>
+        <li><strong>Light & Materials:</strong> Observing how light reflects, bends, and interacts with surfaces.</li>
       </ul>
     </section>
 
-    <!-- About -->
-    <section id="panel-about" class="panel" role="tabpanel" aria-labelledby="tab-about">
+    <section id="about" class="panel">
       <h2>About Me</h2>
-      <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal, a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
+      <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal — a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
     </section>
 
-    <!-- Contact -->
-    <section id="panel-contact" class="panel" role="tabpanel" aria-labelledby="tab-contact">
+    <section id="contact" class="panel">
       <h2>Contact</h2>
       <p>If you’d like to connect or collaborate, email me at <a href="mailto:le000547@umn.edu">le000547@umn.edu</a>.</p>
     </section>
@@ -165,27 +148,14 @@
   </footer>
 
   <script>
-    // set footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    function showPanel(which) {
-      // tabs
-      document.querySelectorAll('.tab').forEach(t => {
-        const isActive = t.id === 'tab-' + which;
-        t.classList.toggle('active', isActive);
-        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-
-      // panels
-      document.querySelectorAll('.panel').forEach(p => {
-        p.classList.remove('active');
-      });
-      const id = 'panel-' + which;
-      const panel = document.getElementById(id);
-      panel.classList.add('active');
-
-      // scroll to panels area (keeps header visible)
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    function showPanel(id) {
+      document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      event.target.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   </script>
 </body>
