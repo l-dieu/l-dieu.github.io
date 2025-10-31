@@ -1,192 +1,143 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lumen — A Quiet Study in Light</title>
   <meta name="description" content="Lumen — a quiet study in light by Dieu Le. Physics, space, and curiosity." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --cream: #FFF5E1;
-      --navy: #0B0F3B;
-      --radius: 18px;
-      --maxw: 880px;
+      --cream: #fff5e1;
+      --navy: #080f38;
+      --radius: 8px;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      background: var(--cream);
+      background-color: var(--cream);
       color: var(--navy);
-      font-family: 'Inter', system-ui, sans-serif;
-      text-align: center;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    header {
-      padding: 100px 20px 60px;
-    }
-
-    .logo img {
-      max-width: 280px;
-      height: auto;
-    }
-
-    .tagline {
-      font-size: 18px;
-      opacity: 0.9;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
-
-    /* Intro paragraph */
-    .intro {
-      font-size: 18px;
-      opacity: 0.85;
-      max-width: 600px;
-      margin: 0 auto 50px;
-    }
-
-    /* Centered nav below intro */
-    .navbar-wrap {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .navbar {
-      display: inline-flex;
-      gap: 40px;
+      font-family: "Inter", sans-serif;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-    }
-
-    .navbar a {
-      color: var(--navy);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .navbar a:hover {
-      border-bottom: 1px solid var(--navy);
-    }
-
-    .wrap {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 40px 20px 60px;
-    }
-
-    section {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      margin: 60px auto 0;
-      background: white;
-      border: 1px solid rgba(11, 15, 59, 0.08);
-      border-radius: var(--radius);
-      box-shadow: 0 8px 24px rgba(11, 15, 59, 0.05);
-      padding: 32px;
+      justify-content: flex-start;
+      min-height: 100vh;
       text-align: center;
+      padding: 60px 20px;
     }
 
-    section.active {
-      display: block;
-      opacity: 1;
+    h1 {
+      font-size: 4rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
     }
 
-    section h2 {
-      font-size: 32px;
-      margin-bottom: 16px;
-      font-weight: 600;
+    .tagline img {
+      width: 320px;
+      margin-bottom: 25px;
     }
 
-    section p {
-      font-size: 17px;
-      opacity: 0.9;
-      line-height: 1.7;
+    .intro {
+      max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--navy);
+      margin-bottom: 40px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 40px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 1.2rem;
+      transition: opacity 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
+    .content {
+      display: none;
+      max-width: 700px;
+      text-align: left;
+      line-height: 1.6;
+      margin-top: 20px;
     }
 
     footer {
-      text-align: center;
-      font-size: 14px;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: var(--navy);
       opacity: 0.8;
-      margin: 60px 0 20px;
     }
 
     footer a {
       color: var(--navy);
       text-decoration: underline;
-      text-underline-offset: 2px;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="logo">
-      <!-- replace this file name with your actual logo if needed -->
-      <img src="lumen-logo.png" alt="Lumen logo" />
-    </div>
-    <p class="tagline">A Quiet Study in Light</p>
+  <h1>Lumen</h1>
+  <div class="tagline">
+    <img src="tagline.png" alt="A Quiet Study in Light">
+  </div>
 
-    <p class="intro">
-      Lumen is a quiet digital journal by Dieu Le — a space to share experiments, reflections, and notes from studying physics. It explores how theory meets wonder, where science and light intertwine.
-    </p>
+  <div class="intro">
+    <p><strong>Lumen</strong> is a quiet digital journal — a small space to explore light, physics, and the patterns that shape understanding. It’s a collection of work, experiments, and reflections by Dieu Le, a physics student at the University of Minnesota.</p>
+  </div>
 
-    <div class="navbar-wrap">
-      <nav class="navbar" aria-label="primary">
-        <a onclick="showSection('projects')">Projects</a>
-        <a onclick="showSection('about')">About Me</a>
-        <a onclick="showSection('contact')">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <nav>
+    <a href="#" onclick="showSection('projects')">Projects</a>
+    <a href="#" onclick="showSection('about')">About Me</a>
+    <a href="#" onclick="showSection('contact')">Contact</a>
+  </nav>
 
-  <div class="wrap">
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>Coming soon — labs, notes, and small experiments.</p>
-    </section>
+  <div id="projects" class="content">
+    <h2>Projects</h2>
+    <p>This is where your featured physics labs, creative experiments, or notes will go — anything that captures your curiosity and exploration.</p>
+  </div>
 
-    <section id="about">
-      <h2>About Me</h2>
-      <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal, a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
-    </section>
+  <div id="about" class="content">
+    <h2>About Me</h2>
+    <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal — a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
+  </div>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:le000547@umn.edu">le000547@umn.edu</a></p>
-    </section>
+  <div id="contact" class="content">
+    <h2>Contact</h2>
+    <p>If you’d like to connect or collaborate, you can reach me at <a href="mailto:le000547@umn.edu">le000547@umn.edu</a>.</p>
   </div>
 
   <footer>
-    <p>© <span id="year"></span> Dieu Le · <a href="mailto:le000547@umn.edu">le000547@umn.edu</a></p>
+    © 2025 Dieu Le · <a href="mailto:le000547@umn.edu">le000547@umn.edu</a>
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
     function showSection(id) {
-      document.querySelectorAll("section").forEach(sec => {
-        sec.classList.remove("active");
+      document.querySelectorAll('.content').forEach(section => {
+        section.style.display = 'none';
       });
-      const selected = document.getElementById(id);
-      selected.classList.add("active");
-      selected.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 </body>
 </html>
+
