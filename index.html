@@ -12,61 +12,138 @@
 
   <style>
     :root {
-      --cream:#FFF5E1;
-      --navy:#0B0F3B;
-      --radius:18px;
-      --maxw:880px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      background:var(--cream); color:var(--navy);
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      line-height:1.6;
+      --cream: #FFF5E1;
+      --navy: #0B0F3B;
+      --radius: 18px;
+      --maxw: 880px;
     }
 
-    header{padding:60px 20px 24px; text-align:center}
-    .logo img{max-width:280px; height:auto}
-    .tagline{font-size:18px; opacity:.9; margin-top:10px}
-
-    /* NAV: all links left-aligned like your screenshot */
-    .navbar-wrap{max-width:var(--maxw); margin:32px auto 0; padding:0 20px}
-    .navbar{
-      display:flex; gap:28px; align-items:center; justify-content:flex-start;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .navbar a{
-      color:var(--navy); text-decoration:none; font-weight:600; font-size:16px;
-      border-bottom:1px solid transparent;
-      cursor:pointer;
+
+    body {
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      text-align: center;
     }
-    .navbar a:hover{border-bottom-color:var(--navy)}
 
-    .wrap{max-width:var(--maxw); margin:0 auto; padding:32px 20px 60px}
-
-    section{
-      display:none; opacity:0; transition:opacity .45s ease;
-      margin:20px 0 0; background:#fff; border:1px solid rgba(11,15,59,.08);
-      border-radius:var(--radius); box-shadow:0 8px 24px rgba(11,15,59,.05);
-      padding:32px; text-align:center;
+    header {
+      padding: 60px 20px 40px;
     }
-    section.active{display:block; opacity:1}
 
-    section h2{font-size:32px; margin-bottom:16px; font-weight:600}
-    section p{font-size:17px; opacity:.9}
+    .logo img {
+      max-width: 280px;
+      height: auto;
+    }
 
-    footer{margin:60px 0 20px; text-align:center; font-size:14px; opacity:.8}
-    footer a{color:var(--navy); text-decoration:underline; text-underline-offset:2px}
+    .tagline {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-top: 10px;
+    }
+
+    /* Navbar centered */
+    .navbar-wrap {
+      max-width: var(--maxw);
+      margin: 40px auto 0;
+      text-align: center;
+    }
+
+    .navbar {
+      display: inline-flex;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .navbar a:hover {
+      border-bottom: 1px solid var(--navy);
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      margin: 60px auto 0;
+      background: white;
+      border: 1px solid rgba(11, 15, 59, 0.08);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(11, 15, 59, 0.05);
+      padding: 32px;
+    }
+
+    section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    section h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    section p {
+      font-size: 17px;
+      opacity: 0.9;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+      margin: 60px 0 20px;
+    }
+
+    footer a {
+      color: var(--navy);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .intro {
+      margin-top: 40px;
+      font-size: 18px;
+      opacity: 0.85;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">
-      <!-- replace with your uploaded logo file name if different -->
       <img src="lumen-logo.png" alt="Lumen logo" />
     </div>
     <p class="tagline">A Quiet Study in Light</p>
+
+    <p class="intro">
+      Welcome to Lumen — a small digital space where I share experiments, notes, and thoughts from my studies in physics. It’s a place to connect curiosity, structure, and light.
+    </p>
   </header>
 
-  <!-- left-aligned nav -->
   <div class="navbar-wrap">
     <nav class="navbar" aria-label="primary">
       <a onclick="showSection('projects')">Projects</a>
@@ -76,7 +153,6 @@
   </div>
 
   <div class="wrap">
-    <!-- Projects visible on first load -->
     <section id="projects" class="active">
       <h2>Projects</h2>
       <p>Coming soon — labs, notes, and small experiments.</p>
@@ -98,13 +174,14 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    function showSection(id){
-      document.querySelectorAll('section').forEach(s=>{
-        if(s.id===id){ s.classList.add('active'); s.scrollIntoView({behavior:'smooth', block:'start'}); }
-        else{ s.classList.remove('active'); }
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => {
+        sec.classList.remove("active");
       });
+      document.getElementById(id).classList.add("active");
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     }
   </script>
 </body>
