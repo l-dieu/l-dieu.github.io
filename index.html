@@ -27,13 +27,14 @@
     body {
       background: var(--cream);
       color: var(--navy);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
+      font-family: 'Inter', system-ui, sans-serif;
       text-align: center;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     header {
-      padding: 60px 20px 40px;
+      padding: 100px 20px 40px;
     }
 
     .logo img {
@@ -45,12 +46,13 @@
       font-size: 18px;
       opacity: 0.9;
       margin-top: 10px;
+      margin-bottom: 40px;
     }
 
-    /* Navbar centered */
+    /* centered nav below tagline */
     .navbar-wrap {
       max-width: var(--maxw);
-      margin: 40px auto 0;
+      margin: 0 auto;
       text-align: center;
     }
 
@@ -65,7 +67,7 @@
       color: var(--navy);
       text-decoration: none;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
     }
 
@@ -89,6 +91,7 @@
       border-radius: var(--radius);
       box-shadow: 0 8px 24px rgba(11, 15, 59, 0.05);
       padding: 32px;
+      text-align: center;
     }
 
     section.active {
@@ -120,40 +123,28 @@
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-
-    .intro {
-      margin-top: 40px;
-      font-size: 18px;
-      opacity: 0.85;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
   </style>
 </head>
 
 <body>
   <header>
     <div class="logo">
+      <!-- replace this image file name if needed -->
       <img src="lumen-logo.png" alt="Lumen logo" />
     </div>
     <p class="tagline">A Quiet Study in Light</p>
 
-    <p class="intro">
-      Welcome to Lumen — a small digital space where I share experiments, notes, and thoughts from my studies in physics. It’s a place to connect curiosity, structure, and light.
-    </p>
+    <div class="navbar-wrap">
+      <nav class="navbar" aria-label="primary">
+        <a onclick="showSection('projects')">Projects</a>
+        <a onclick="showSection('about')">About Me</a>
+        <a onclick="showSection('contact')">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <div class="navbar-wrap">
-    <nav class="navbar" aria-label="primary">
-      <a onclick="showSection('projects')">Projects</a>
-      <a onclick="showSection('about')">About Me</a>
-      <a onclick="showSection('contact')">Contact</a>
-    </nav>
-  </div>
-
   <div class="wrap">
-    <section id="projects" class="active">
+    <section id="projects">
       <h2>Projects</h2>
       <p>Coming soon — labs, notes, and small experiments.</p>
     </section>
@@ -180,10 +171,12 @@
       document.querySelectorAll("section").forEach(sec => {
         sec.classList.remove("active");
       });
-      document.getElementById(id).classList.add("active");
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      const selected = document.getElementById(id);
+      selected.classList.add("active");
+      selected.scrollIntoView({ behavior: "smooth" });
     }
   </script>
 </body>
 </html>
+
 
