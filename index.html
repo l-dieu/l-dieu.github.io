@@ -6,172 +6,128 @@
   <title>Lumen — A Quiet Study in Light</title>
   <meta name="description" content="Lumen — a quiet study in light by Dieu Le. Physics, space, and curiosity." />
   <style>
-    :root {
-      --cream: #FFF5E1;
-      --navy: #0B0F3B;
+    :root{
+      --white:#FFFFFF;
+      --navy:#0B0F3B;
+      --pill:#F4F4F6;   /* subtle tab background on white */
+      --maxw:720px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      background:var(--white);
+      color:var(--navy);
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      text-align:center;
+      line-height:1.65;
+      padding:56px 16px 72px;
     }
 
-    body {
-      background: var(--cream);
-      color: var(--navy);
-      font-family: "Inter", system-ui, sans-serif;
-      text-align: center;
-      padding: 60px 16px;
+    /* Logo + Tagline */
+    .logo img{width:300px;max-width:90%;height:auto}
+    .tagline img{width:340px;max-width:90%;height:auto;margin-top:10px;margin-bottom:18px}
+
+    /* Tabs (below tagline) */
+    .tabs{
+      display:inline-flex;
+      gap:28px;
+      justify-content:center;
+      align-items:center;
+      margin:14px auto 24px;
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--pill);
+      border:1px solid #E8E8ED;
+    }
+    .tab{
+      background:transparent;border:none;color:var(--navy);
+      font-weight:700;font-size:16px;border-radius:999px;
+      padding:10px 18px;cursor:pointer;transition:all .2s ease;
+    }
+    .tab:hover{opacity:.85}
+    .tab.active{
+      background:var(--white);
+      box-shadow:0 2px 10px rgba(11,15,59,.08);
+      border:1px solid #E2E2EA;
     }
 
-    .logo img {
-      width: 300px;
-      max-width: 90%;
+    /* Panels — hidden by default, no boxes */
+    .wrap{max-width:var(--maxw);margin:0 auto}
+    .content{
+      display:none;text-align:left;margin:0 auto;
+      font-size:1.08rem;opacity:.98;animation:fadeIn .35s ease;
     }
+    .content h2{font-size:1.6rem;text-align:center;margin:8px 0 12px}
+    .content p{margin-bottom:8px}
+    .content ul{margin:6px 0 0 18px}
+    .content.active{display:block}
 
-    .tagline img {
-      width: 340px;
-      max-width: 90%;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
+    footer{margin-top:60px;font-size:14px;opacity:.8}
+    footer a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
 
-    /* Tabs (nav bar) */
-    .tabs {
-      display: inline-flex;
-      gap: 28px;
-      justify-content: center;
-      align-items: center;
-      margin: 16px auto 30px;
-      border-radius: 999px;
-      background: #F2E9D8;
-      padding: 10px 16px;
-      box-shadow: 0 2px 8px rgba(11, 15, 59, 0.05);
-    }
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-    .tab {
-      background: transparent;
-      border: none;
-      color: var(--navy);
-      font-weight: 700;
-      font-size: 16px;
-      border-radius: 999px;
-      padding: 10px 18px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .tab.active {
-      background: #fff;
-      box-shadow: 0 2px 10px rgba(11, 15, 59, 0.1);
-    }
-
-    .tab:hover {
-      opacity: 0.8;
-    }
-
-    /* Panels (no white boxes) */
-    .content {
-      display: none;
-      max-width: 650px;
-      margin: 0 auto;
-      text-align: left;
-      line-height: 1.6;
-      font-size: 1.1rem;
-      opacity: 0.95;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .content.active {
-      display: block;
-    }
-
-    .content h2 {
-      text-align: center;
-      margin-bottom: 12px;
-      font-size: 1.6rem;
-      font-weight: 700;
-    }
-
-    footer {
-      margin-top: 60px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    footer a {
-      color: var(--navy);
-      text-decoration: underline;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .tabs {
-        gap: 12px;
-        padding: 8px 10px;
-      }
-      .tab {
-        font-size: 15px;
-        padding: 9px 14px;
-      }
+    @media (max-width:520px){
+      .tabs{gap:12px;padding:8px 10px}
+      .tab{font-size:15px;padding:9px 14px}
     }
   </style>
 </head>
 <body>
-  <!-- Logo + Tagline -->
+  <!-- Logo & Tagline -->
   <div class="logo">
-    <img src="lumen-logo.png" alt="Lumen logo" />
+    <img src="lumen-logo.png" alt="Lumen logo">
   </div>
   <div class="tagline">
-    <img src="tagline.png" alt="A Quiet Study in Light" />
+    <img src="tagline.png" alt="A Quiet Study in Light">
   </div>
 
-  <!-- Navigation Tabs -->
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('projects')">Projects</button>
-    <button class="tab" onclick="showTab('about')">About Me</button>
-    <button class="tab" onclick="showTab('contact')">Contact</button>
+  <!-- Tabs (no content shown until clicked) -->
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" aria-controls="projects" id="tab-projects" onclick="showTab('projects')">Projects</button>
+    <button class="tab" role="tab" aria-controls="about" id="tab-about" onclick="showTab('about')">About Me</button>
+    <button class="tab" role="tab" aria-controls="contact" id="tab-contact" onclick="showTab('contact')">Contact</button>
   </div>
 
-  <!-- Page Content -->
-  <div id="projects" class="content active">
-    <h2>Projects</h2>
-    <p><em>Coming Soon!</em></p>
+  <!-- Panels (all hidden initially) -->
+  <div class="wrap">
+    <section id="projects" class="content" role="tabpanel" aria-labelledby="tab-projects">
+      <h2>Projects</h2>
+      <p><em>Coming Soon!</em></p>
+    </section>
+
+    <section id="about" class="content" role="tabpanel" aria-labelledby="tab-about">
+      <h2>About Me</h2>
+      <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal — a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
+    </section>
+
+    <section id="contact" class="content" role="tabpanel" aria-labelledby="tab-contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:le000547@umn.edu">le000547@umn.edu</a></p>
+    </section>
   </div>
 
-  <div id="about" class="content">
-    <h2>About Me</h2>
-    <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal — a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
-  </div>
-
-  <div id="contact" class="content">
-    <h2>Contact</h2>
-    <p>If you’d like to connect or collaborate, you can reach me at <a href="mailto:le000547@umn.edu">le000547@umn.edu</a>.</p>
-  </div>
-
-  <!-- Footer -->
   <footer>
     © <span id="year"></span> Dieu Le · <a href="mailto:le000547@umn.edu">le000547@umn.edu</a>
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    function showTab(id) {
-      document.querySelectorAll(".content").forEach((section) => section.classList.remove("active"));
-      document.querySelectorAll(".tab").forEach((tab) => tab.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      event.target.classList.add("active");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    function showTab(id){
+      // toggle active tab
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      // find the button that called this
+      const btn = event.currentTarget;
+      btn.classList.add('active');
+
+      // toggle panels
+      document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      // nice scroll
+      document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
     }
   </script>
 </body>
