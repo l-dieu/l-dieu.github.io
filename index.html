@@ -8,7 +8,7 @@
   <style>
     :root{
       --white:#FFFFFF;
-      --black:#0A0A0A;  /* darker than navy — true near-black */
+      --black:#000000; /* true black */
       --pill:#F4F4F6; 
       --maxw:720px;
     }
@@ -50,21 +50,21 @@
     }
     .content.active{display:block}
 
-    /* Section header images */
-    .section-title{
-      display:block;margin:6px auto 12px;
-      width:min(260px, 80vw);
-      height:auto;
+    .content h2{
+      font-weight:600;
+      font-size:1.5rem;
+      text-align:center;
+      margin-bottom:10px;
     }
 
-    .content p{margin-bottom:8px}
+    .content p{margin-bottom:8px;text-align:center}
     .content ul{margin:6px 0 0 18px}
 
     footer{
       margin-top:60px;
       font-size:14px;
-      opacity:.9;
       color:var(--black);
+      font-weight:500;
     }
     footer a{
       color:var(--black);
@@ -99,17 +99,17 @@
   <!-- Panels -->
   <div class="wrap">
     <section id="projects" class="content" role="tabpanel" aria-labelledby="tab-projects">
-      <img src="projects-title.png" alt="Projects" class="section-title" loading="lazy">
+      <h2>Projects</h2>
       <p><em>Coming Soon!</em></p>
     </section>
 
     <section id="about" class="content" role="tabpanel" aria-labelledby="tab-about">
-      <img src="aboutme-title.png" alt="About Me" class="section-title" loading="lazy">
+      <h2>About Me</h2>
       <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal — a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
     </section>
 
     <section id="contact" class="content" role="tabpanel" aria-labelledby="tab-contact">
-      <img src="contact-title.png" alt="Contact" class="section-title" loading="lazy">
+      <h2>Contact</h2>
       <p>Email: <a href="mailto:le000547@umn.edu">le000547@umn.edu</a></p>
     </section>
   </div>
@@ -135,4 +135,5 @@
   </script>
 </body>
 </html>
+
 
