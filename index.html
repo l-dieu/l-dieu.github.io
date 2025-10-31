@@ -9,7 +9,7 @@
     :root{
       --white:#FFFFFF;
       --black:#000000;
-      --pill:#F4F4F6; 
+      --pill:#F4F4F6;
       --maxw:720px;
     }
 
@@ -37,18 +37,26 @@
     .tab{
       background:transparent;border:none;color:var(--black);
       font-weight:700;font-size:16px;border-radius:999px;
-      padding:10px 18px;cursor:pointer;transition:all .2s ease;
+      padding:10px 18px;cursor:pointer;transition:opacity .2s ease, transform .2s ease;
     }
-    .tab:hover{opacity:.75}
-    .tab.active{background:var(--white);box-shadow:0 2px 10px rgba(0,0,0,.1);border:1px solid #E2E2EA}
+    .tab:hover{opacity:.8}
+    .tab.active{
+      background:var(--white);
+      box-shadow:0 2px 10px rgba(0,0,0,.1);
+      border:1px solid #E2E2EA;
+    }
 
-    /* Panels */
+    /* Panels (no titles, hidden by default) */
     .wrap{max-width:var(--maxw);margin:0 auto}
     .content{
-      display:none;text-align:center;margin:0 auto;
-      font-size:1.08rem;opacity:.98;animation:fadeIn .35s ease;
+      display:none;
+      text-align:center;
+      margin:0 auto;
+      font-size:1.08rem;
+      opacity:0; /* start invisible so first animation looks clean */
+      transform:translateY(8px);
     }
-    .content.active{display:block}
+    .content.active{ display:block; }
 
     footer{
       margin-top:60px;
@@ -62,7 +70,11 @@
       text-underline-offset:2px;
     }
 
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    /* Respect user who prefers reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .tab{ transition:none }
+      .content{ transition:none }
+    }
 
     @media (max-width:520px){
       .tabs{gap:12px;padding:8px 10px}
@@ -81,9 +93,9 @@
 
   <!-- Tabs -->
   <div class="tabs" role="tablist" aria-label="Sections">
-    <button class="tab" role="tab" aria-controls="projects" id="tab-projects" onclick="showTab('projects')">Projects</button>
-    <button class="tab" role="tab" aria-controls="about" id="tab-about" onclick="showTab('about')">About Me</button>
-    <button class="tab" role="tab" aria-controls="contact" id="tab-contact" onclick="showTab('contact')">Contact</button>
+    <button class="tab" role="tab" aria-controls="projects" id="tab-projects">Projects</button>
+    <button class="tab" role="tab" aria-controls="about" id="tab-about">About Me</button>
+    <button class="tab" role="tab" aria-controls="contact" id="tab-contact">Contact</button>
   </div>
 
   <!-- Panels -->
@@ -106,19 +118,78 @@
   </footer>
 
   <script>
-    // footer year
+    // set footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // tab switching
-    function showTab(id){
-      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      event.currentTarget.classList.add('active');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
-      const panel = document.getElementById(id);
-      panel.classList.add('active');
-      panel.scrollIntoView({behavior:'smooth', block:'start'});
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const panels = {
+      projects: document.getElementById('projects'),
+      about: document.getElementById('about'),
+      contact: document.getElementById('contact')
+    };
+
+    // helper: animate out + in (Framer-Motion-ish)
+    function swapPanels(fromEl, toEl){
+      if(prefersReduced){
+        if(fromEl){ fromEl.style.display = 'none'; fromEl.classList.remove('active'); }
+        toEl.style.display = 'block'; toEl.classList.add('active'); toEl.style.opacity = 1; toEl.style.transform = 'none';
+        return;
+      }
+
+      const spring = 'cubic-bezier(.18,.89,.32,1.28)'; // springy easing
+
+      // animate out current panel
+      const out = fromEl?.animate([
+        { opacity: 1, transform: 'translateY(0px)' },
+        { opacity: 0, transform: 'translateY(8px)' }
+      ], { duration: 180, easing: 'ease-out' });
+
+      const showNext = () => {
+        if(fromEl){ fromEl.style.display = 'none'; fromEl.classList.remove('active'); }
+
+        toEl.style.display = 'block';
+        toEl.classList.add('active');
+        toEl.style.opacity = 0;
+        toEl.style.transform = 'translateY(8px)';
+
+        toEl.animate([
+          { opacity: 0, transform: 'translateY(8px)' },
+          { opacity: 1, transform: 'translateY(0px)' }
+        ], { duration: 260, easing: spring }).onfinish = () => {
+          toEl.style.opacity = 1;
+          toEl.style.transform = 'translateY(0px)';
+        };
+      };
+
+      out ? out.onfinish = showNext : showNext();
     }
+
+    // click handlers
+    tabs.forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        // toggle active pill
+        tabs.forEach(t=>t.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+
+        // figure current & next
+        const nextId = e.currentTarget.id.replace('tab-','');
+        const current = document.querySelector('.content.active');
+        const next = panels[nextId];
+
+        if(current === next) return;
+        swapPanels(current, next);
+
+        // scroll nicely to the top of the panels area
+        document.querySelector('.wrap').scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
+
+    // start with nothing open (per your design)
+    // if you want a default open tab, uncomment below:
+    // document.getElementById('tab-projects').click();
   </script>
 </body>
 </html>
+
