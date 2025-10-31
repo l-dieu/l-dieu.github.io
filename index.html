@@ -26,7 +26,7 @@
     .logo img { width: 300px; max-width: 90%; height: auto; }
     .tagline img { width: 340px; max-width: 90%; height: auto; margin-top: 10px; margin-bottom: 18px; }
 
-    /* Tabs (below tagline) */
+    /* Tabs below tagline */
     .tabs {
       display: inline-flex;
       gap: 28px;
@@ -36,6 +36,7 @@
       border-radius: 999px;
       background: #F2E9D8;
       padding: 10px 16px;
+      box-shadow: 0 2px 8px rgba(11,15,59,0.05);
     }
 
     .tab {
@@ -57,15 +58,7 @@
 
     .tab:hover { opacity: .8; }
 
-    /* Intro below the tabs */
-    .intro {
-      max-width: 600px;
-      margin: 25px auto 28px;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      opacity: .9;
-    }
-
+    /* Panels */
     .wrap { max-width: var(--maxw); margin: 0 auto; }
     .panel {
       display: none;
@@ -78,8 +71,20 @@
     }
 
     .panel.active { display: block; }
-    .panel h2 { font-size: 28px; margin-bottom: 10px; font-weight: 700; color: var(--navy); text-align: center; }
-    .panel p, .panel li { font-size: 17px; opacity: .95; }
+
+    .panel h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .panel p, .panel li {
+      font-size: 17px;
+      opacity: .95;
+    }
+
     .panel ul { margin-top: 8px; padding-left: 18px; }
     .panel li { margin: 6px 0; }
 
@@ -88,7 +93,12 @@
       font-size: 14px;
       opacity: .8;
     }
-    footer a { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
+
+    footer a {
+      color: var(--navy);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -108,21 +118,16 @@
     <img src="tagline.png" alt="A Quiet Study in Light">
   </div>
 
-  <!-- Tabs directly below tagline -->
+  <!-- Tabs -->
   <div class="tabs">
-    <button class="tab active" onclick="showPanel('projects')">Projects</button>
+    <button class="tab" onclick="showPanel('projects')">Projects</button>
     <button class="tab" onclick="showPanel('about')">About Me</button>
     <button class="tab" onclick="showPanel('contact')">Contact</button>
   </div>
 
-  <!-- Intro below tabs -->
-  <p class="intro">
-    <strong>Lumen</strong> is a quiet digital journal — a small space to explore light, physics, and the patterns that shape understanding. It’s a collection of work, experiments, and reflections by Dieu Le, a physics student at the University of Minnesota.
-  </p>
-
-  <!-- Panels -->
+  <!-- Panels (hidden until clicked) -->
   <div class="wrap">
-    <section id="projects" class="panel active">
+    <section id="projects" class="panel">
       <h2>Projects</h2>
       <p>Here are a few things I’m building and studying. I’ll keep adding as I go:</p>
       <ul>
