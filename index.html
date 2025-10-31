@@ -8,7 +8,7 @@
   <style>
     :root{
       --white:#FFFFFF;
-      --black:#000000; /* true black */
+      --black:#000000;
       --pill:#F4F4F6; 
       --maxw:720px;
     }
@@ -42,23 +42,13 @@
     .tab:hover{opacity:.75}
     .tab.active{background:var(--white);box-shadow:0 2px 10px rgba(0,0,0,.1);border:1px solid #E2E2EA}
 
-    /* Panels — hidden by default */
+    /* Panels */
     .wrap{max-width:var(--maxw);margin:0 auto}
     .content{
-      display:none;text-align:left;margin:0 auto;
+      display:none;text-align:center;margin:0 auto;
       font-size:1.08rem;opacity:.98;animation:fadeIn .35s ease;
     }
     .content.active{display:block}
-
-    .content h2{
-      font-weight:600;
-      font-size:1.5rem;
-      text-align:center;
-      margin-bottom:10px;
-    }
-
-    .content p{margin-bottom:8px;text-align:center}
-    .content ul{margin:6px 0 0 18px}
 
     footer{
       margin-top:60px;
@@ -99,17 +89,14 @@
   <!-- Panels -->
   <div class="wrap">
     <section id="projects" class="content" role="tabpanel" aria-labelledby="tab-projects">
-      <h2>Projects</h2>
       <p><em>Coming Soon!</em></p>
     </section>
 
     <section id="about" class="content" role="tabpanel" aria-labelledby="tab-about">
-      <h2>About Me</h2>
       <p>I’m Dieu Le, a Physics major at the University of Minnesota with an interest in light, motion, and the structure of the universe. Lumen serves as a small digital journal — a place to share experiments, thoughts, and ongoing work as I continue exploring how physics connects theory to wonder.</p>
     </section>
 
     <section id="contact" class="content" role="tabpanel" aria-labelledby="tab-contact">
-      <h2>Contact</h2>
       <p>Email: <a href="mailto:le000547@umn.edu">le000547@umn.edu</a></p>
     </section>
   </div>
@@ -135,5 +122,3 @@
   </script>
 </body>
 </html>
-
-
